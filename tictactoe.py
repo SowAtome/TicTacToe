@@ -19,7 +19,6 @@ def playerInput(board):
         board[inp-1] = activePlayer
         return True
     else:
-        print("Oops, wrong choice!")
         return False
         
      
@@ -67,6 +66,7 @@ def checkTie(board):
 def checkWin():
     global gameRunning
     if checkHorizontally(board) or checkVertically(board) or checkDiagonally(board) == True:
+        os.system("cls")
         print(f"The winner is \"{winner}\"")
         gameRunning = False
 
@@ -78,12 +78,16 @@ def switchPlayer():
     else: 
         activePlayer = "X"
 
-
+printBoard(board)
 while gameRunning:
-    printBoard(board)
     sp = playerInput(board)
     os.system("cls")
+    if sp == True:
+        printBoard(board)
+        switchPlayer()
+    else:
+        printBoard(board)
+        print("Oops, wrong choice!")
     checkWin()
     checkTie(board)
-    if sp == True:
-        switchPlayer()
+
