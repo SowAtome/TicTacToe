@@ -17,8 +17,10 @@ def playerInput(board):
     inp = int(input("Enter a number 1-9: "))
     if inp >= 1 and inp <= 9 and board[inp-1] == "_":
         board[inp-1] = activePlayer
+        return True
     else:
         print("Oops, wrong choice!")
+        return False
         
      
 #check for a win or tie
@@ -79,8 +81,9 @@ def switchPlayer():
 
 while gameRunning:
     printBoard(board)
-    playerInput(board)
+    sp = playerInput(board)
     os.system("cls")
     checkWin()
     checkTie(board)
-    switchPlayer()
+    if sp == True:
+        switchPlayer()
